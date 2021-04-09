@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular-route.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>AngularJS Assignment</title>
+</head>
+<body ng-app="myApp">
+    <script type="text/ng-template" id="pages/stud.html">
+        <form action="" >
+            <h1>Student Details</h1>
+                <label class="text" for="name"><b>Name</b></label>
+                <input type="text" name="" class="form-control" id="name" required>
+                <label class="text" for="roll">Roll No.</label>
+                <input type="text" name="" class="form-control" id="roll" required>
+                <label class="text" for="email">Email</label>
+                <input type="text" name="" class="form-control" id="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
+            <input class="btn" type="submit" value="Submit">
+        </form>
+      </script>
+  
+      <script type="text/ng-template" id="pages/acad.html">
+        <form action="" >
+            <h1>Academic Details</h1>
+                <label class="text" for=""><b>MCA Marks</b></label><br><br>
+                <label class="text" for=""><b>Semester 1</b></label>
+                <input type="number" name="" class="form-control" id="" ng-model="s1" required>
+                <label class="text" for="">Semester 2</label>
+                <input type="number" name="" class="form-control" id="" ng-model="s2" required>
+                <label class="text" for="">Semester 3</label>
+                <input type="number" name="" class="form-control" id="" ng-model="s3" required>
+                <label class="text" for="">Semester 4</label>
+                <input type="number" name="" class="form-control" id="" ng-model="s4" required>
+                <label class="text" for="">Aggregate : {{ (s1+s2+s3+s4)/4 }}</label>
+                <!-- <input type="number" name="" class="form-control" id="" required> -->
+            <br>
+                <label class="text" for="">Programing languages known:</label><br><br>
+                <input class="" type="checkbox" name="" class="form-control" id="" required><span class="checkmark">C</span>
+                
+                <input class="" type="checkbox" name="" class="form-control" id="" required><span class="checkmark">CPP</span>
+                
+                <input class="" type="checkbox" name="" class="form-control" id="" required><span class="checkmark">JAVA</span>
+                
+                <input class="" type="checkbox" name="" class="form-control" id="" required><span class="checkmark">Python</span>
+                
+                <input class="" type="checkbox" name="" class="form-control" id="" required><span class="checkmark">C#</span>
+                
+                <input class="" type="checkbox" name="" class="form-control" id="" required><span class="checkmark">R</span>
+                
+            <br>
+                <label class="text" for="">Extra Cirricular Activities</label>
+                <input type="text" name="" class="form-control" id="" required>
+            <input class="btn" type="button" value="Submit" >
+        </form>
+      </script>
+  
+
+      <div >
+        <a href="#/" class="btnn">Student Details</a>
+        <a href="#/acad">Academic Details</a>
+
+        <div class="container1" ng-view>
+        
+        </div>
+      </div>
+
+
+<script>
+    var app = angular.module('myApp', ['ngRoute']);
+
+app.config(function($routeProvider) {
+  $routeProvider
+
+  .when('/', {
+    templateUrl : 'pages/stud.html',
+    controller  : 'HomeController'
+  })
+
+  .when('/acad', {
+    templateUrl : 'pages/acad.html',
+    controller  : 'BlogController'
+  })
+
+  .otherwise({redirectTo: '/'});
+});
+
+app.controller('HomeController', function($scope) {
+  $scope.message = 'Hello from HomeController';
+});
+
+app.controller('BlogController', function($scope) {
+    $scope.s1=100;
+    $scope.s2=100;
+    $scope.s3=100;
+    $scope.s4=100;
+  $scope.avg = $scope.s1+$scope.s2+$scope.s3+$scope.s4;
+});
+
+app.controller('AboutController', function($scope) {
+  $scope.message = 'Hello from AboutController';
+});
+
+    </script>
+        
+</body>
+</html>
