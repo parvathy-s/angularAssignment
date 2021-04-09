@@ -10,15 +10,21 @@
     <title>AngularJS Assignment</title>
 </head>
 <body ng-app="myApp">
+	<script type="text/ng-template" id="pages/welcome.html">
+		<form>
+        <h1>Welcome to Student Registration using SPA</h1>
+        <h3 style="text-align:center;">{{message}}</h3>
+    </form>
+      </script>
     <script type="text/ng-template" id="pages/stud.html">
         <form action="" >
             <h1>Student Details</h1>
                 <label class="text" for="name"><b>Name</b></label>
-                <input type="text" name="" class="form-control" id="name" required>
+                <input type="text" name="" class="form-control" id="name" ng-model="name" required>
                 <label class="text" for="roll">Roll No.</label>
-                <input type="text" name="" class="form-control" id="roll" required>
+                <input type="text" name="" class="form-control" id="roll" ng-model="roll" required>
                 <label class="text" for="email">Email</label>
-                <input type="text" name="" class="form-control" id="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
+                <input type="text" name="" class="form-control" id="email" ng-model="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
             <input class="btn" type="submit" value="Submit">
         </form>
       </script>
@@ -57,12 +63,11 @@
             <input class="btn" type="button" value="Submit" >
         </form>
       </script>
-  
 
       <div >
-        <a href="#/" class="btnn">Student Details</a>
+      	<a href="#/" class="btnn">Welcome</a>
+        <a href="#/stud" class="btnn">Student Details</a>
         <a href="#/acad">Academic Details</a>
-
         <div class="container1" ng-view>
         
         </div>
@@ -76,6 +81,11 @@ app.config(function($routeProvider) {
   $routeProvider
 
   .when('/', {
+    templateUrl : 'pages/welcome.html',
+    controller  : 'WelcomeController'
+  })
+
+  .when('/stud', {
     templateUrl : 'pages/stud.html',
     controller  : 'HomeController'
   })
@@ -89,7 +99,6 @@ app.config(function($routeProvider) {
 });
 
 app.controller('HomeController', function($scope) {
-  $scope.message = 'Hello from HomeController';
 });
 
 app.controller('BlogController', function($scope) {
@@ -97,11 +106,11 @@ app.controller('BlogController', function($scope) {
     $scope.s2=100;
     $scope.s3=100;
     $scope.s4=100;
-  $scope.avg = $scope.s1+$scope.s2+$scope.s3+$scope.s4;
+
 });
 
-app.controller('AboutController', function($scope) {
-  $scope.message = 'Hello from AboutController';
+app.controller('WelcomeController', function($scope) {
+  $scope.message = 'Hello from WelcomeController';
 });
 
     </script>
